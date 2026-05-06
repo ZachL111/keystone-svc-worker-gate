@@ -1,0 +1,73 @@
+{
+  "repo": "keystone-svc-worker-gate",
+  "language": "Kotlin",
+  "category": "Backend services",
+  "goal": "Design a Kotlin verification harness for worker systems, covering protocol validation, framed sample traffic, and failure-oriented tests.",
+  "review_model": {
+    "terms": [
+      "queue pressure",
+      "retry load",
+      "worker slack",
+      "session drift"
+    ],
+    "lanes": [
+      "ship",
+      "watch",
+      "hold"
+    ],
+    "score": "signal * 2 + slack + confidence - drag * 3",
+    "purpose": "surface the domain-specific cases that need the most careful review"
+  },
+  "cases": [
+    {
+      "name": "baseline",
+      "focus": "queue pressure",
+      "signal": 65,
+      "slack": 48,
+      "drag": 28,
+      "confidence": 64,
+      "score": 158,
+      "lane": "ship"
+    },
+    {
+      "name": "stress",
+      "focus": "retry load",
+      "signal": 46,
+      "slack": 34,
+      "drag": 22,
+      "confidence": 49,
+      "score": 109,
+      "lane": "watch"
+    },
+    {
+      "name": "edge",
+      "focus": "worker slack",
+      "signal": 46,
+      "slack": 31,
+      "drag": 21,
+      "confidence": 58,
+      "score": 118,
+      "lane": "watch"
+    },
+    {
+      "name": "recovery",
+      "focus": "session drift",
+      "signal": 84,
+      "slack": 44,
+      "drag": 17,
+      "confidence": 73,
+      "score": 234,
+      "lane": "ship"
+    },
+    {
+      "name": "stale",
+      "focus": "queue pressure",
+      "signal": 66,
+      "slack": 49,
+      "drag": 25,
+      "confidence": 64,
+      "score": 170,
+      "lane": "ship"
+    }
+  ]
+}
